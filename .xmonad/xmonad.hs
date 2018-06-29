@@ -1,15 +1,13 @@
 import XMonad
-import XMonad.Config.Desktop
-import XMonad.Util.EZConfig
-import Graphics.X11.ExtraTypes.XF86
+import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.ManageDocks
+import XMonad.Util.Run(spawnPipe)
+import XMonad.Util.EZConfig(additionalKeys)
+import System.IO
 
 main = do
-    spawn "xmobar"
-    xmonad $ desktopConfig
-        { borderWidth = 1
-        , terminal = "lxterminal"
-        } `additionalKeys` 
-            [ ((0, xF86XK_AudioLowerVolume   ), spawn "amixer set Master 2-")
-            , ((0, xF86XK_AudioRaiseVolume   ), spawn "amixer set Master 2+")
-            , ((0, xF86XK_AudioMute          ), spawn "amixer set Master toggle")
-            ]
+    ixmproc <- spawnPipe "xmobar"
+    xmonad $  defaultConfig
+        {layoutHook=avoidStruts $ layoutHook defaultConfig
+        , manageHook=manageHook defaultConfig <+> manageDocks
+        }

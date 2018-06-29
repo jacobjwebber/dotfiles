@@ -1,0 +1,5 @@
+#!/bin/bash
+#set background
+feh --bg-scale /home/jjw2/Pictures/desktop/desktop4.jpg &
+xrandr --output HDMI-4 --left-of VGA-2
+xrandr --output HDMI-4 --primary
