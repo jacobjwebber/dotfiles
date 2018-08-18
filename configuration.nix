@@ -38,12 +38,14 @@
     #haskellPackages.xmonadContrib
     #haskellPackages.xmonadExtras
     ghc
+    cabal-install
     ocaml
     opam
     gnum4
     unzip
     gcc
     clang
+    tree
     binutils-unwrapped
 
     dmenu
@@ -115,6 +117,20 @@
   #services.xserver.desktopManager.plasma5.enable = true;
   # Allow nonfree
   nixpkgs.config.allowUnfree = true;
+  
+  # Bash prompt
+  programs.bash.promptInit =
+  ''
+  # Provide a nice prompt if the terminal supports it.
+if [ "$TERM" != "dumb" -o -n "$INSIDE_EMACS" ]; then
+  PROMPT_COLOR="1;31m"
+  let $UID && PROMPT_COLOR="1;32m"
+  PS1="\[\033[$PROMPT_COLOR\][\u@\h:\w]\\$\[\033[0m\] "
+  if test "$TERM" = "xterm"; then
+    PS1="\[\033]2;\h:\u:\w\007\]$PS1"
+  fi
+fi
+'';
 
   # Audio
   hardware.pulseaudio.enable = true;
