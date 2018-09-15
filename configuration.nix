@@ -47,6 +47,7 @@
     clang
     tree
     binutils-unwrapped
+    racket
 
     dmenu
     xscreensaver

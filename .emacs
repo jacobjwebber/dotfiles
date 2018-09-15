@@ -31,9 +31,11 @@
  '(package-archives
    (quote
     (("gnu" . "http://elpa.gnu.org/packages/")
-     ("melpa-stable" . "http://stable.melpa.org/packages/"))))
- '(package-selected-packages (quote (haskell-mode auto-complete))))
+     ("melpa" . "http://melpa.org/packages/"))))
+ '(package-selected-packages (quote (racket-mode ## haskell-mode auto-complete))))
 (package-initialize)
+
+
 
 
 (load-theme 'tsdh-dark)
@@ -43,3 +45,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+(add-hook 'org-mode-hook #'toggle-word-wrap)
+
+(load-file (let ((coding-system-for-read 'utf-8))
+                (shell-command-to-string "agda-mode locate")))
