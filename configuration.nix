@@ -48,6 +48,10 @@
     tree
     binutils-unwrapped
     racket
+    python3
+
+    killall
+    
 
     dmenu
     xscreensaver
