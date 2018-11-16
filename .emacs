@@ -28,25 +28,34 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(inhibit-startup-screen t)
  '(package-archives
    (quote
     (("gnu" . "http://elpa.gnu.org/packages/")
      ("melpa" . "http://melpa.org/packages/"))))
- '(package-selected-packages (quote (racket-mode ## haskell-mode auto-complete))))
+ '(package-selected-packages
+   (quote
+    (markdown-mode racket-mode ## haskell-mode auto-complete))))
 (package-initialize)
 
 
 
 
-(load-theme 'tsdh-dark)
+;;(load-theme 'tsdh-dark)
+;;(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+;; )
+
+(add-hook 'org-mode-hook #'toggle-word-wrap)
+
+(load-file (let ((coding-system-for-read 'utf-8))
+                (shell-command-to-string "agda-mode locate")))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-
-(add-hook 'org-mode-hook #'toggle-word-wrap)
-
-(load-file (let ((coding-system-for-read 'utf-8))
-                (shell-command-to-string "agda-mode locate")))
