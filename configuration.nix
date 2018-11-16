@@ -51,7 +51,8 @@
     python3
 
     killall
-    
+    texmaker
+    texlive.combined.scheme-full
 
     dmenu
     xscreensaver
@@ -74,6 +75,7 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+  networking.hosts."192.168.0.34" = [ "media-gpu" ];
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
